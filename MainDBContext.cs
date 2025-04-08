@@ -7,10 +7,12 @@ namespace Zakázky;
 
 public class MainDBContext : DbContext
 {
-    public DbSet<Subject> Subject { get; set; }
-    public DbSet<ContactList> ContactList { get; set; }
-
     public DbSet<AdressList> AdressList { get; set; }
+    public DbSet<ContactList> ContactList { get; set; }
+    public DbSet<Employee> Employee { get; set; }
+    public DbSet<Order> Order { get; set; }
+    public DbSet<OrderItem> OrderItem { get; set; }
+    public DbSet<Subject> Subject { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
