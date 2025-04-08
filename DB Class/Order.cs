@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Zakázky.DB_Class
+{
+    public class Order
+    {
+        public int ID { get; set; }
+        public required int OrderID { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string? OrderName { get; set; }
+        public string[]? OrderType { get; set; }
+        public string? OrderDescription { get; set; }
+        public string? OrderNote { get; set; }
+       
+        public DateTime? CreadtedDate { get; set; }
+
+        public Employee? EmployeeTookOver { get; set; }
+        
+        public required Subject Custumer { get; set; }
+        public required Subject Supplier { get; set; }
+
+        public decimal? EstimatedTotalCost { get; set; }
+        public decimal? TotalCost { get; set; }
+
+
+    }
+}
