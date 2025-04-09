@@ -14,6 +14,10 @@ public class MainDBContext : DbContext
     public DbSet<OrderItem> OrderItem { get; set; }
     public DbSet<Subject> Subject { get; set; }
 
+    /*
+     * dotnet ef migrations add NAZEV_MIGRACE
+     * dotnet ef database update
+     */
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         Debug.WriteLine(ConfigurationManager.ConnectionStrings["Database"].ConnectionString);

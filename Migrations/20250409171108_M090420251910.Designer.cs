@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zakázky;
 
@@ -11,9 +12,11 @@ using Zakázky;
 namespace Zakázky.Migrations
 {
     [DbContext(typeof(MainDBContext))]
-    partial class MainDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250409171108_M090420251910")]
+    partial class M090420251910
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,8 +217,8 @@ namespace Zakázky.Migrations
                     b.Property<string>("DIC")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ICO")
-                        .HasColumnType("int");
+                    b.Property<string>("ICO")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubjectCode")
                         .HasColumnType("nvarchar(max)");

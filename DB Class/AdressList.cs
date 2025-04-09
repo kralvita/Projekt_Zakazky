@@ -13,10 +13,10 @@ namespace Zakázky.DB_Class
         public string? City { get; set; }  
         public string? Region { get; set; }
         public int? PostalCode { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; }
-
-        public Subject Subject { get; set; } 
+        public int? SubjectId { get; set; }
+        public Subject? Subject { get; set; } 
 
 
     }

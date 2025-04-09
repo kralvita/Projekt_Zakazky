@@ -12,9 +12,9 @@ namespace Zakázky.DB_Class
         public string? Name { get; set; }
         public int? Phone { get; set; }
         public string? Email { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; }
-        public required Subject Subject { get; set; }
+        public Subject? Subject { get; set; }
 
     }
 }

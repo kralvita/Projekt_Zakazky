@@ -10,11 +10,12 @@
         public string? OrderDescription { get; set; }
         public string? OrderNote { get; set; }
 
-        public DateTime? CreadtedDate { get; set; }
+        public DateTime? CreadtedDate { get; set; } = DateTime.Now;
 
         public Employee? EmployeeTookOver { get; set; }
 
         public required Subject Custumer { get; set; }
+        public Subject? Contractor { get; set; }
 
         public decimal? EstimatedTotalCost { get; set; }
         public decimal? TotalCost { get; set; }
