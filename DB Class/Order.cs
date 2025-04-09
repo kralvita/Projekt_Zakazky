@@ -17,9 +17,12 @@
         public required Subject Custumer { get; set; }
         public Subject? Contractor { get; set; }
 
+        public int? OrderItemID { get; set; }
+        public OrderItem? OrderItem { get; set; }
+
         public decimal? EstimatedTotalCost { get; set; }
         public decimal? TotalCost { get; set; }
-
+        Boolean IsDeleted { get; set; } = false;
 
     }
 }

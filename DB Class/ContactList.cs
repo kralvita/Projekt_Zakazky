@@ -16,6 +16,7 @@ namespace Zakázky.DB_Class
         public DateTime UpdatedDate { get; set; }
         public int? SubjectID { get; set; }
         public Subject? Subject { get; set; }
+        Boolean IsDeleted { get; set; } = false;
 
     }
 }

@@ -14,6 +14,7 @@ namespace Zakázky.DB_Class
         public string? LastName { get; set; }
 
         public ContactList? Contact { get; set; }
+        Boolean IsDeleted { get; set; } = false;    
 
-     }
+    }
 }
