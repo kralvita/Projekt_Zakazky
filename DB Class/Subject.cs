@@ -19,7 +19,7 @@ public class Subject
         public ContactList? Contact { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; }
-        Boolean IsDeleted { get; set; } = false;
+        public Boolean IsDeleted { get; set; } = false;
 
 
 

@@ -39,6 +39,9 @@ namespace Zakázky.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("PostalCode")
                         .HasColumnType("int");
 
@@ -73,6 +76,9 @@ namespace Zakázky.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -112,6 +118,9 @@ namespace Zakázky.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -145,6 +154,9 @@ namespace Zakázky.Migrations
                     b.Property<decimal?>("EstimatedTotalCost")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -152,6 +164,9 @@ namespace Zakázky.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrderItemID")
                         .HasColumnType("int");
 
                     b.Property<string>("OrderName")
@@ -174,6 +189,8 @@ namespace Zakázky.Migrations
 
                     b.HasIndex("EmployeeTookOverId");
 
+                    b.HasIndex("OrderItemID");
+
                     b.ToTable("Order");
                 });
 
@@ -185,8 +202,8 @@ namespace Zakázky.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("OrderItemName")
                         .HasColumnType("nvarchar(max)");
@@ -198,8 +215,6 @@ namespace Zakázky.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("OrderID");
 
                     b.ToTable("OrderItem");
                 });
@@ -220,6 +235,9 @@ namespace Zakázky.Migrations
 
                     b.Property<int?>("ICO")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("SubjectCode")
                         .HasColumnType("nvarchar(max)");
@@ -278,22 +296,17 @@ namespace Zakázky.Migrations
                         .WithMany()
                         .HasForeignKey("EmployeeTookOverId");
 
+                    b.HasOne("Zakázky.DB_Class.OrderItem", "OrderItem")
+                        .WithMany()
+                        .HasForeignKey("OrderItemID");
+
                     b.Navigation("Contractor");
 
                     b.Navigation("Custumer");
 
                     b.Navigation("EmployeeTookOver");
-                });
 
-            modelBuilder.Entity("Zakázky.DB_Class.OrderItem", b =>
-                {
-                    b.HasOne("Zakázky.DB_Class.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
+                    b.Navigation("OrderItem");
                 });
 
             modelBuilder.Entity("Zakázky.DB_Class.Subject", b =>

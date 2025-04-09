@@ -22,7 +22,7 @@
 
         public decimal? EstimatedTotalCost { get; set; }
         public decimal? TotalCost { get; set; }
-        Boolean IsDeleted { get; set; } = false;
+        public Boolean IsDeleted { get; set; } = false;
 
     }
 }
