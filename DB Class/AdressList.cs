@@ -15,7 +15,7 @@ namespace Zakázky.DB_Class
         public int? PostalCode { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; }
-        public int? SubjectId { get; set; }
+        public int? SubjectID { get; set; }
         public Subject? Subject { get; set; } 
 
 

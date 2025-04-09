@@ -45,7 +45,7 @@ namespace Zakázky.Migrations
                     b.Property<string>("Region")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SubjectID")
+                    b.Property<int?>("SubjectID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -53,7 +53,9 @@ namespace Zakázky.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SubjectID");
+                    b.HasIndex("SubjectID")
+                        .IsUnique()
+                        .HasFilter("[SubjectID] IS NOT NULL");
 
                     b.ToTable("AdressList");
                 });
@@ -78,7 +80,7 @@ namespace Zakázky.Migrations
                     b.Property<int?>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectID")
+                    b.Property<int?>("SubjectID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -86,7 +88,9 @@ namespace Zakázky.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SubjectID");
+                    b.HasIndex("SubjectID")
+                        .IsUnique()
+                        .HasFilter("[SubjectID] IS NOT NULL");
 
                     b.ToTable("ContactList");
                 });
@@ -234,10 +238,8 @@ namespace Zakázky.Migrations
             modelBuilder.Entity("Zakázky.DB_Class.AdressList", b =>
                 {
                     b.HasOne("Zakázky.DB_Class.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithOne("Adress")
+                        .HasForeignKey("Zakázky.DB_Class.AdressList", "SubjectID");
 
                     b.Navigation("Subject");
                 });
@@ -245,10 +247,8 @@ namespace Zakázky.Migrations
             modelBuilder.Entity("Zakázky.DB_Class.ContactList", b =>
                 {
                     b.HasOne("Zakázky.DB_Class.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithOne("Contact")
+                        .HasForeignKey("Zakázky.DB_Class.ContactList", "SubjectID");
 
                     b.Navigation("Subject");
                 });
@@ -294,6 +294,13 @@ namespace Zakázky.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Zakázky.DB_Class.Subject", b =>
+                {
+                    b.Navigation("Adress");
+
+                    b.Navigation("Contact");
                 });
 #pragma warning restore 612, 618
         }
