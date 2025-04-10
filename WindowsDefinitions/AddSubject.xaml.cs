@@ -22,25 +22,46 @@ namespace Zakázky.WindowsDefinitions
     {
         public AddSubject()
         {
-            InitializeComponent();
-                
+            InitializeComponent();                   
+
+        }
+        private bool Validation()
+        {
+            if (string.IsNullOrWhiteSpace(SName.Text))
+            {
+                System.Windows.MessageBox.Show("Pole 'Název' je povinné.");
+                return false;
+            }
+
+            if (!int.TryParse(ico_num.Text, out _))
+            {
+                System.Windows.MessageBox.Show("Pole 'IČO' musí být číslo.");
+                return false;
+            }
+            return true;
+        }
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            if (!Validation())
+                return;
+                string Name = SName.Text;
+                string Shortcut = zkratka.Text;
+                int Ico = Convert.ToInt32(ico_num.Text);
+                string DIC = dic.Text;
+                DataSetMethods.SetSubject(Name, Shortcut, Ico, DIC);
+                /*Vymazání proměnných v okně*/
+                SName.Clear();
+                zkratka.Clear();
+                ico_num.Clear();
+                dic.Clear();           
+            
 
         }
 
-        private void Save(object sender, RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
-            string Name = SName.Text;
-            string Shortcut = zkratka.Text;
-            int Ico = Convert.ToInt32(ico_num.Text);
-            string DIC = dic.Text;
 
-            DataSetMethods.SetSubject(Name, Shortcut, Ico, DIC);
-
-            SName.Text = string.Empty;
-            zkratka.Text = string.Empty;
-            ico_num.Text = string.Empty;
-            dic.Text = string.Empty;
-
+            this.Close();
         }
     }
 }

@@ -7,13 +7,9 @@ using Zakázky.DB_Class;
 
 namespace Zakázky.DataGetSet
 {
-    public class DataSetMethods
+    public static class DataSetMethods
 
-    {
-        public DataSetMethods()
-        {
-            
-        }
+    { 
         public static void SetSubject(string SubjectName, string SubjectCode, int ICO, string DIC)
         {
             using (var SetSubjectInsert = new MainDBContext())
@@ -44,7 +40,7 @@ namespace Zakázky.DataGetSet
                 
                 SetContactInsert.ContactList.Add(contact);
                 SetContactInsert.SaveChanges();
-                Console.WriteLine(Name + " - Kontakt byl uložen");
+                System.Windows.MessageBox.Show("Uloženo!");
             }
          
         }
@@ -61,11 +57,27 @@ namespace Zakázky.DataGetSet
                 
                 SetAdressInsert.AdressList.Add(Adress);
                 SetAdressInsert.SaveChanges();
-                Console.WriteLine(AdressName + " - Adresa byla uložena");
+                System.Windows.MessageBox.Show("Uloženo!");
             }
 
         }
 
+        public static void SetOrder(string AdressName, string City, string Region, int PostalCode)
+        {
+            using (var SetAdressInsert = new MainDBContext())
+            {
+                AdressList Adress = new AdressList();
+                Adress.Adress = AdressName;
+                Adress.City = City;
+                Adress.Region = Region;
+                Adress.PostalCode = PostalCode;
+
+                SetAdressInsert.AdressList.Add(Adress);
+                SetAdressInsert.SaveChanges();
+                System.Windows.MessageBox.Show("Uloženo!");
+            }
+
+        }
 
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zakázky.DataGetSet;
+using Zakázky.DB_Class;
 using Zakázky.WindowsDefinitions;
 
 namespace Zakázky
@@ -21,7 +22,11 @@ namespace Zakázky
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            var order = DataGetMethods.GetOrders();
+            GridOrdersAll.ItemsSource = order;
+
+
         }
         
         private void Close(object sender, RoutedEventArgs e)
@@ -32,6 +37,8 @@ namespace Zakázky
 
         private void ViewSubjectList(object sender, RoutedEventArgs e)
         {
+           SubjectsAllWindow subjectsAllWindow = new SubjectsAllWindow();       
+            subjectsAllWindow.Show();
 
         }
 
@@ -51,6 +58,16 @@ namespace Zakázky
         private void AboutWindow(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("Vypracoval ten největší borec ze všech.");
+        }
+
+        private void NewOrder(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Selected(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

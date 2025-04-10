@@ -6,6 +6,7 @@
         public required int OrderID { get; set; }
         public DateTime? OrderDate { get; set; }
         public string? OrderName { get; set; }
+
         public string[]? OrderType { get; set; }
         public string? OrderDescription { get; set; }
         public string? OrderNote { get; set; }

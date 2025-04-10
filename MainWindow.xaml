@@ -12,6 +12,9 @@
                 <MenuItem Header="Uložit"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
             </MenuItem>
+            <MenuItem Header="Zakázky">
+                <MenuItem Header="Nová zakázka" Click="NewOrder"/>
+            </MenuItem>
             <MenuItem Header="Subjekty">
                 <MenuItem Header="Zobrazit všechny" Click="ViewSubjectList"/>
                 <MenuItem Header="Přidat nový" Click="AddNewSubject"/> 
@@ -21,6 +24,23 @@
             </MenuItem>
             <MenuItem Header="O aplikaci" Click="AboutWindow"/>
         </Menu>
+        <DataGrid x:Name="GridOrdersAll" Height="760" MouseDoubleClick="Selected" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Datum" Binding="{Binding OrderDate}" Width="80"/>
+                <DataGridTextColumn Header="Zákazník" Binding="{Binding Custumer}" Width="150"/>
+                <DataGridTextColumn Header="Typ" Binding="{Binding OrderType}" Width="80"/>
+                <DataGridTextColumn Header="Název" Binding="{Binding OrderName}" Width="180"/>
+                <DataGridTextColumn Header="Popis" Binding="{Binding OrderDescription}" Width="200"/>
+                <DataGridTextColumn Header="Pozn.:" Binding="{Binding OrderNote}" Width="200"/>
+                <DataGridTextColumn Header="Převzal.:" Binding="{Binding EmployeeTookOver}" Width="120" />
+                <DataGridTextColumn Header="Odhadovaná cena" Binding="{Binding EstimatedTotalCost}" />
+                
+                  
+                
+
+            </DataGrid.Columns>
+        </DataGrid>
+
     </StackPanel>
 
 </Window>
