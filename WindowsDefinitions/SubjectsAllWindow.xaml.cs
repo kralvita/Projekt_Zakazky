@@ -38,5 +38,10 @@ namespace Zakázky.WindowsDefinitions
             addSubject.Show();
             
         }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

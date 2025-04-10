@@ -161,11 +161,14 @@ namespace Zakázky.Migrations
                     b.Property<string>("OrderNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.PrimitiveCollection<string>("OrderType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal?>("TotalCost")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("orderState")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderType")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

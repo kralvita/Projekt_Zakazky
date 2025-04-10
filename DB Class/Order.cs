@@ -1,13 +1,14 @@
 ﻿namespace Zakázky.DB_Class
 {
+
     public class Order
     {
         public int ID { get; set; }
         public required int OrderID { get; set; }
         public DateTime? OrderDate { get; set; }
         public string? OrderName { get; set; }
-
-        public string[]? OrderType { get; set; }
+        public OrderType orderType { get; set; }
+        public OrderState orderState { get; set; }  
         public string? OrderDescription { get; set; }
         public string? OrderNote { get; set; }
 

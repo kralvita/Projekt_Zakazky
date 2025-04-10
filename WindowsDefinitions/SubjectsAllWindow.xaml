@@ -10,9 +10,18 @@
         <StackPanel>
         <Menu>
                 <MenuItem Header="Nový" Click="New"/>
+                <MenuItem Header="Vymazat" Click="Delete"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
         </Menu>
-            <DataGrid x:Name="DataSubjectGrid" MinHeight="100" MaxHeight="400" AutoGenerateColumns="True" IsReadOnly="True"/>
+            <DataGrid x:Name="DataSubjectGrid" MinHeight="100" MaxHeight="400" AutoGenerateColumns="false" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Datum vzniku" Binding="{Binding CreatedDate, StringFormat=dd.MM.yyyy}" Width="90"/>
+                    <DataGridTextColumn Header="Zkratka" Binding="{Binding SubjectCode}" Width="80"/>
+                    <DataGridTextColumn Header="Název" Binding="{Binding SubjectName}" Width="200"/>
+                    <DataGridTextColumn Header="IČO" Binding="{Binding ICO}" Width="80"/>
+                    <DataGridTextColumn Header="DIČ" Binding="{Binding DIC}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Window>
