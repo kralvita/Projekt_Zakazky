@@ -48,17 +48,10 @@ namespace Zakázky.Migrations
                     b.Property<string>("Region")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SubjectID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("SubjectID")
-                        .IsUnique()
-                        .HasFilter("[SubjectID] IS NOT NULL");
 
                     b.ToTable("AdressList");
                 });
@@ -86,17 +79,10 @@ namespace Zakázky.Migrations
                     b.Property<int?>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubjectID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("SubjectID")
-                        .IsUnique()
-                        .HasFilter("[SubjectID] IS NOT NULL");
 
                     b.ToTable("ContactList");
                 });
@@ -109,7 +95,7 @@ namespace Zakázky.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ContactID")
+                    b.Property<int?>("ContactId")
                         .HasColumnType("int");
 
                     b.Property<string>("EmployeeFullName")
@@ -126,7 +112,7 @@ namespace Zakázky.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContactID");
+                    b.HasIndex("ContactId");
 
                     b.ToTable("Employee");
                 });
@@ -227,6 +213,12 @@ namespace Zakázky.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int?>("AdressListID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactListID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -250,32 +242,18 @@ namespace Zakázky.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("AdressListID");
+
+                    b.HasIndex("ContactListID");
+
                     b.ToTable("Subject");
-                });
-
-            modelBuilder.Entity("Zakázky.DB_Class.AdressList", b =>
-                {
-                    b.HasOne("Zakázky.DB_Class.Subject", "Subject")
-                        .WithOne("Adress")
-                        .HasForeignKey("Zakázky.DB_Class.AdressList", "SubjectID");
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Zakázky.DB_Class.ContactList", b =>
-                {
-                    b.HasOne("Zakázky.DB_Class.Subject", "Subject")
-                        .WithOne("Contact")
-                        .HasForeignKey("Zakázky.DB_Class.ContactList", "SubjectID");
-
-                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("Zakázky.DB_Class.Employee", b =>
                 {
                     b.HasOne("Zakázky.DB_Class.ContactList", "Contact")
                         .WithMany()
-                        .HasForeignKey("ContactID");
+                        .HasForeignKey("ContactId");
 
                     b.Navigation("Contact");
                 });
@@ -311,6 +289,14 @@ namespace Zakázky.Migrations
 
             modelBuilder.Entity("Zakázky.DB_Class.Subject", b =>
                 {
+                    b.HasOne("Zakázky.DB_Class.AdressList", "Adress")
+                        .WithMany()
+                        .HasForeignKey("AdressListID");
+
+                    b.HasOne("Zakázky.DB_Class.ContactList", "Contact")
+                        .WithMany()
+                        .HasForeignKey("ContactListID");
+
                     b.Navigation("Adress");
 
                     b.Navigation("Contact");

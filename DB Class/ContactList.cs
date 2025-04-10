@@ -14,8 +14,6 @@ namespace Zakázky.DB_Class
         public string? Email { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; }
-        public int? SubjectID { get; set; }
-        public Subject? Subject { get; set; }
         public Boolean IsDeleted { get; set; } = false;
 
     }

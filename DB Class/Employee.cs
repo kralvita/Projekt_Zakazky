@@ -12,7 +12,7 @@ namespace Zakázky.DB_Class
         public string? EmployeeFullName { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-
+        public int? ContactId { get; set; }
         public ContactList? Contact { get; set; }
         public Boolean IsDeleted { get; set; } = false;    
 

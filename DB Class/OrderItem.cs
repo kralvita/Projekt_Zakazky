@@ -12,7 +12,6 @@ namespace Zakázky.DB_Class
         public string? OrderItemName { get; set; }
         public string? OrderItemNote { get; set; }
         public string? OrderItemQuantity { get; set; }
-
         public Boolean IsDeleted { get; set; } = false;    
     }
 }

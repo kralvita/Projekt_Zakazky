@@ -28,7 +28,7 @@ namespace Zakázky.DataGetSet
 
         }
         
-        public static void SetContact(string Name, int Phone, string Email,int SubjectID)
+        public static void SetContact(string Name, int Phone, string Email)
         {
             using (var SetContactInsert = new MainDBContext())
             {
@@ -37,8 +37,7 @@ namespace Zakázky.DataGetSet
                 contact.Phone = Phone;
                 contact.Email = Email;
                 contact.UpdatedDate = DateTime.Now;
-                contact.SubjectID  = SubjectID;
-
+                
                 SetContactInsert.ContactList.Add(contact);
                 SetContactInsert.SaveChanges();
                 Console.WriteLine(Name + " - Kontakt byl uložen");
@@ -46,7 +45,7 @@ namespace Zakázky.DataGetSet
          
         }
 
-        public static void SetAdress(string AdressName, string City, string Region, int PostalCode, int SubjectID)
+        public static void SetAdress(string AdressName, string City, string Region, int PostalCode)
         {
             using (var SetAdressInsert = new MainDBContext())
             {
@@ -55,8 +54,7 @@ namespace Zakázky.DataGetSet
                 Adress.City = City;
                 Adress.Region = Region;
                 Adress.PostalCode = PostalCode;
-                Adress.SubjectID = SubjectID;
-
+                
                 SetAdressInsert.AdressList.Add(Adress);
                 SetAdressInsert.SaveChanges();
                 Console.WriteLine(AdressName + " - Adresa byla uložena");
