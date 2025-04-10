@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zakázky.DataGetSet;
+using Zakázky.WindowsDefinitions;
 
 namespace Zakázky
 {
@@ -20,6 +21,36 @@ namespace Zakázky
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+        
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+           
+        }
+
+        private void ViewSubjectList(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddNewSubject(object sender, RoutedEventArgs e)
+        {
+            AddSubject addSubject = new AddSubject();
+            addSubject.Show();
+
+
+        }
+
+        private void SearchOrder(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AboutWindow(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Vypracoval ten největší borec ze všech.");
         }
     }
 }

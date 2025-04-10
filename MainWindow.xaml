@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zakázky"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="800" Width="1240">
+    <StackPanel>
+        <Menu Height="20" RenderTransformOrigin="0,0">
+            <MenuItem Header="Soubor">
+                <MenuItem Header="Uložit"/>
+                <MenuItem Header="Zavřít" Click="Close"/>
+            </MenuItem>
+            <MenuItem Header="Subjekty">
+                <MenuItem Header="Zobrazit všechny" Click="ViewSubjectList"/>
+                <MenuItem Header="Přidat nový" Click="AddNewSubject"/> 
+            </MenuItem>
+            <MenuItem Header="Vyhledat" >
+                <MenuItem Header="Vyhledat zakázku" Click="SearchOrder"/>
+            </MenuItem>
+            <MenuItem Header="O aplikaci" Click="AboutWindow"/>
+        </Menu>
+    </StackPanel>
 
-    </Grid>
 </Window>

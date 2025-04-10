@@ -10,6 +10,10 @@ namespace Zakázky.DataGetSet
     public class DataSetMethods
 
     {
+        public DataSetMethods()
+        {
+            
+        }
         public static void SetSubject(string SubjectName, string SubjectCode, int ICO, string DIC)
         {
             using (var SetSubjectInsert = new MainDBContext())
@@ -23,7 +27,7 @@ namespace Zakázky.DataGetSet
 
                 SetSubjectInsert.Subject.Add(subject);
                 SetSubjectInsert.SaveChanges();
-                Console.WriteLine("Nový subjekt uložen");
+                System.Windows.MessageBox.Show("Uloženo!");
             }
 
         }

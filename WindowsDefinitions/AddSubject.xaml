@@ -1,0 +1,22 @@
+﻿<Window x:Class="Zakázky.WindowsDefinitions.AddSubject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zakázky.WindowsDefinitions"
+        mc:Ignorable="d"
+        Title="Nový subjeckt" Height="150" Width="800">
+    <Grid>
+        <Button Content="Uložit" Click="Save" HorizontalAlignment="Left" Margin="617,71,0,0" VerticalAlignment="Top" Width="120 "/>
+        <Label Content="Název subjektu:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SName" HorizontalAlignment="Left" Margin="110,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="450" Height="20"/>
+        <Label Content="Zkratka:" HorizontalAlignment="Left" Margin="565,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.497"/>
+        <TextBox Name="zkratka" HorizontalAlignment="Left" Margin="617,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="IČO:" HorizontalAlignment="Left" Margin="71,40,0,0" VerticalAlignment="Top"/>
+        <Label Content="DIČ:" HorizontalAlignment="Left" Margin="230,40,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="ico_num" HorizontalAlignment="Left" Margin="110,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="dic" HorizontalAlignment="Left" Margin="262,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+
+
+    </Grid>
+</Window>
