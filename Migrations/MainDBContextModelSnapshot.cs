@@ -128,10 +128,10 @@ namespace Zakázky.Migrations
                     b.Property<int?>("ContractorID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreadtedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustumerID")
+                    b.Property<int?>("CustumerID")
                         .HasColumnType("int");
 
                     b.Property<int?>("EmployeeTookOverId")
@@ -148,9 +148,6 @@ namespace Zakázky.Migrations
 
                     b.Property<string>("OrderDescription")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
 
                     b.Property<int?>("OrderItemID")
                         .HasColumnType("int");
@@ -269,9 +266,7 @@ namespace Zakázky.Migrations
 
                     b.HasOne("Zakázky.DB_Class.Subject", "Custumer")
                         .WithMany()
-                        .HasForeignKey("CustumerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustumerID");
 
                     b.HasOne("Zakázky.DB_Class.Employee", "EmployeeTookOver")
                         .WithMany()

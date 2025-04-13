@@ -23,8 +23,16 @@
                 <MenuItem Header="Vyhledat zakázku" Click="SearchOrder"/>
             </MenuItem>
             <MenuItem Header="O aplikaci" Click="AboutWindow"/>
-        </Menu>
-        <DataGrid x:Name="GridOrdersAll" Height="760" MouseDoubleClick="Selected" AutoGenerateColumns="False" IsReadOnly="True">
+        </Menu>        
+          
+            <StackPanel>
+            <Grid Height="20">
+                <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="0,0,1160,0"/>
+            </Grid>
+        </StackPanel>
+
+       
+        <DataGrid x:Name="GridOrdersAll" Height="760" MouseDoubleClick="Selected" AutoGenerateColumns="False" IsReadOnly="True" MouseRightButtonDown="MouserRigtAction">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum" Binding="{Binding OrderDate, StringFormat=dd.MM.yyyy}" Width="80"/>
                 <DataGridTextColumn Header="Zákazník" Binding="{Binding Custumer}" Width="150"/>
@@ -34,12 +42,17 @@
                 <DataGridTextColumn Header="Pozn.:" Binding="{Binding OrderNote}" Width="200"/>
                 <DataGridTextColumn Header="Převzal.:" Binding="{Binding EmployeeTookOver}" Width="120" />
                 <DataGridTextColumn Header="Stav" Binding="{Binding OrderState}" Width="80"/>
-                <DataGridTextColumn Header="Odhadovaná cena" Binding="{Binding EstimatedTotalCost}" />
-                
-                  
-                
-
+                <DataGridTextColumn Header="Odhadovaná cena" Binding="{Binding EstimatedTotalCost}" />    
             </DataGrid.Columns>
+            
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Nový" Click="NewOrder"/>
+                    <MenuItem Header="Detail" Click="EditOrder"/>
+                    <MenuItem Header="Vymazat" Click="DeleteOrder"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+
         </DataGrid>
 
     </StackPanel>

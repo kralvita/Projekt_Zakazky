@@ -13,6 +13,9 @@
                 <MenuItem Header="Vymazat" Click="Delete"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
         </Menu>
+            <StackPanel>
+                <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="5"/>
+            </StackPanel>
             <DataGrid x:Name="DataSubjectGrid" MinHeight="100" MaxHeight="400" AutoGenerateColumns="false" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Datum vzniku" Binding="{Binding CreatedDate, StringFormat=dd.MM.yyyy}" Width="90"/>

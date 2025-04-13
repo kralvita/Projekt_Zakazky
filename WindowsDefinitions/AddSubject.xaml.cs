@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using Zakázky.DataGetSet;
 
 namespace Zakázky.WindowsDefinitions
@@ -20,6 +22,7 @@ namespace Zakázky.WindowsDefinitions
     /// </summary>
     public partial class AddSubject : Window
     {
+        private string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
         public AddSubject()
         {
             InitializeComponent();                   
@@ -27,6 +30,7 @@ namespace Zakázky.WindowsDefinitions
         }
         private bool Validation()
         {
+            
             if (string.IsNullOrWhiteSpace(SName.Text))
             {
                 System.Windows.MessageBox.Show("Pole 'Název' je povinné.");
@@ -38,12 +42,19 @@ namespace Zakázky.WindowsDefinitions
                 System.Windows.MessageBox.Show("Pole 'IČO' musí být číslo.");
                 return false;
             }
+
+            if(Regex.IsMatch(SEmail.Text,pattern))
+            {
+                return false;
+            }
             return true;
         }
         private void Save(object sender, RoutedEventArgs e)
         {
             if (!Validation())
                 return;
+                string email = SEmail.Text;
+   
                 string Name = SName.Text;
                 string Shortcut = zkratka.Text;
                 int Ico = Convert.ToInt32(ico_num.Text);

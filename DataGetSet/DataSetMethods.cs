@@ -20,7 +20,6 @@ namespace Zakázky.DataGetSet
                 subject.ICO = ICO;
                 subject.DIC = DIC;
                 subject.UpdatedDate = DateTime.Now;
-
                 SetSubjectInsert.Subject.Add(subject);
                 SetSubjectInsert.SaveChanges();
                 System.Windows.MessageBox.Show("Uloženo!");

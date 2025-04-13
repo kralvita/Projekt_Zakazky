@@ -5,27 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zakázky.WindowsDefinitions"
         mc:Ignorable="d"
-        Title="Nový subjeckt" Height="450" Width="600">
-    <Grid>
-        <StackPanel>
+        Title="Nový subjeckt" Height="450" Width="650">
+    <Grid Margin="0,0,0,0">
+        <StackPanel Margin="0,0,0,0">
             <Menu>
                 <MenuItem Header="Uložit" Click="Save"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
             </Menu>
+
         </StackPanel>
+        
+        
         <Label Content="Název subjektu:" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SName" HorizontalAlignment="Left" Margin="98,25,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="450" />
-        <Label Content="Zkratka:" HorizontalAlignment="Left" Margin="380,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.497"/>
-        <TextBox Name="zkratka" HorizontalAlignment="Left" Margin="428,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="IČO:" HorizontalAlignment="Left" Margin="61,45,0,0" VerticalAlignment="Top"/>
-        <Label Content="DIČ:" HorizontalAlignment="Left" Margin="223,45,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="ico_num" HorizontalAlignment="Left" Margin="98,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="dic" HorizontalAlignment="Left" Margin="255,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="Adresa:" HorizontalAlignment="Left" Margin="44,70,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="Adress" HorizontalAlignment="Left" Margin="98,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277"/>
-        <TextBox Name="City" HorizontalAlignment="Left" Margin="98,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277"/>
-        <Label Content="Město:" HorizontalAlignment="Left" Margin="48,97,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SName" HorizontalAlignment="Left" Margin="98,25,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="493" Height="25"/>
+        <Label Content="Zkratka:" HorizontalAlignment="Left" Margin="414,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.497"/>
+        <TextBox Name="zkratka" HorizontalAlignment="Left" Margin="471,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="25"/>
+        <Label Content="IČO:" HorizontalAlignment="Left" Margin="61,60,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="DIČ:" HorizontalAlignment="Left" Margin="223,60,0,0" VerticalAlignment="Top" Height="25" RenderTransformOrigin="0.558,1.268"/>
+        <TextBox Name="ico_num" HorizontalAlignment="Left" Margin="98,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="25"/>
+        <TextBox Name="dic" HorizontalAlignment="Center" Margin="0,60,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="25"/>
 
-    </Grid>
+        <GroupBox Header="Adresa" Margin="30,97,30,217" Padding="10" Height="120" Width="590">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
+                <!-- Adresa -->
+                <Label Content="Adresa:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="Adress" Grid.Row="0" Grid.Column="1" Width="200" Margin="5" Height="25"/>
+
+                <!-- Kraj -->
+                <Label Content="Kraj:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="Region" Grid.Row="0" Grid.Column="3" Width="200" Margin="5" Height="25"/>
+
+                <!-- Město -->
+                <Label Content="Město:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="City" Grid.Row="1" Grid.Column="1" Width="200" Margin="5" Height="25"/>
+
+                <!-- PSČ -->
+                <Label Content="PSČ:" Grid.Column="3" VerticalAlignment="Top" Margin="79,3,109,0"  Width="40" Grid.Row="1"/>
+                <TextBox Name="PostalCode" Grid.Row="1" Grid.Column="3" Width="90" Margin="124,5,14,6" Height="25"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Kontakty" Margin="30,222,30,132" Padding="10" Height="80" Width="590">
+            <StackPanel Margin="0,0,0,0" Height="36">
+                <!-- Phone -->
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Telefon:" Width="60" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Phone" Width="120" Margin="5" Height="25"/>
+
+                    <!-- Email -->
+                    <Label Content="Email:" Width="60" VerticalAlignment="Center"/>
+                    <TextBox x:Name="SEmail" Width="250" Margin="5" Height="25"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+
+        </Grid>
 </Window>

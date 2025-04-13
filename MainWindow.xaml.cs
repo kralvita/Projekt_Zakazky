@@ -62,10 +62,27 @@ namespace Zakázky
 
         private void NewOrder(object sender, RoutedEventArgs e)
         {
+            AddOrder addOrder = new AddOrder();
+            addOrder.Show();
 
         }
 
         private void Selected(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void EditOrder(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteOrder(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MouserRigtAction(object sender, MouseButtonEventArgs e)
         {
 
         }
