@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Identity.Client;
+using Zakázky.DB_Class;
 
 namespace Zakázky.WindowsDefinitions
 {
@@ -22,6 +24,10 @@ namespace Zakázky.WindowsDefinitions
         public AddOrder()
         {
             InitializeComponent();
+            OrderTypeComboBox.ItemsSource = Enum.GetValues(typeof(OrderType));
+            OrderStateComboBox.ItemsSource = Enum.GetValues(typeof(OrderState));
+
+
         }
 
         private void SaveOrder(object sender, RoutedEventArgs e)

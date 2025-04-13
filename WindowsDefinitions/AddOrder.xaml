@@ -11,10 +11,19 @@
             <Menu Height="20">
                 <MenuItem Header="Uložit" Click="SaveOrder"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
-                <ComboBox  Name="Stav" Width="80" ItemsSource="{Binding OderState}"/>
             </Menu>
         </StackPanel>
-        <GroupBox Header="Hlavička" Margin="10,28,10,538">
+        <StackPanel>
+            <Grid Height="25" Margin="0,25,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="21*"/>
+                    <ColumnDefinition Width="79*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Stav:" Width="50" Margin="10,0,108,0"/>
+                <ComboBox  x:Name="OrderStateComboBox" Width="120" Height="25" Margin="60,0,620,0" Grid.ColumnSpan="2" />
+            </Grid>
+        </StackPanel>
+        <GroupBox Header="Hlavička" Margin="10,55,10,496">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -27,41 +36,40 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="194*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="194*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="179*" />
+                    <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
-                 <!-- Row 1: Date, Customer, Order Type -->
-                <TextBlock Text="Date:" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
-                <DatePicker x:Name="DatePicker" Grid.Row="0" Grid.Column="1" Margin="5" Height="25"/>
+                <!-- Row 1: Date, Customer, Order Type -->
+                <TextBlock Text="Date:" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" />
+                <DatePicker x:Name="DatePicker" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Height="25"/>
 
-                <TextBlock Text="Odběratel:" Grid.Row="0" Grid.Column="2" Margin="5" VerticalAlignment="Center" />
-                <TextBox x:Name="CustomerTextBox" Grid.Row="0" Grid.Column="3" Margin="5" Height="25"/>
+                <TextBlock Text="Odběratel:" Grid.Column="2" Margin="5,0,5,0" VerticalAlignment="Center" />
+                <TextBox x:Name="CustomerTextBox" Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Height="25"/>
 
-                <TextBlock Text="Typ:" Grid.Row="0" Grid.Column="4" Margin="5" VerticalAlignment="Center" />
-                <ComboBox x:Name="OrderTypeComboBox" Grid.Row="0" Grid.Column="5" Margin="5" Height="25">
-                    <ComboBoxItem Content="Standard" />
-                     <ComboBoxItem Content="Express" />
-                 </ComboBox>
+                <TextBlock Text="Typ:" Grid.Column="4" Margin="5,0,5,0" VerticalAlignment="Center" />
+                <ComboBox x:Name="OrderTypeComboBox" Grid.Row="0" Grid.Column="5" Margin="5,5,5,5" Height="25"
+                          Grid.ColumnSpan="2"/>
 
-                 <!-- Row 2: Order Name, Order Note -->
-                <TextBlock Text="Název zakázky:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
-                <TextBox x:Name="OrderNameTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Height="25"/>
+                <!-- Row 2: Order Name, Order Note -->
+                <TextBlock Text="Název zakázky:" Grid.Row="1" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" />
+                <TextBox x:Name="OrderNameTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="25"/>
 
-                <TextBlock Text="Poznámka:" Grid.Row="1" Grid.Column="3" Margin="5" VerticalAlignment="Center" />
-                <TextBox x:Name="OrderNoteTextBox" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Margin="5" Height="25"/>
+                <TextBlock Text="Poznámka:" Grid.Row="1" Grid.Column="3" Margin="5,0,5,0" VerticalAlignment="Center" />
+                <TextBox x:Name="OrderNoteTextBox" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Margin="5,5,5,5" Height="25"/>
 
                 <!-- Row 3: Order Description -->
-                <TextBlock Text="Popis:" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Top" />
-                <TextBox x:Name="OrderDescriptionTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Margin="5" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
+                <TextBlock Text="Popis:" Grid.Row="2" Grid.Column="0" Margin="5,5,5,0" VerticalAlignment="Top" />
+                <TextBox x:Name="OrderDescriptionTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Margin="5,5,5,5" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
             </Grid>
 
         </GroupBox>
 
-        <GroupBox Header="Položky" Margin="10,253,10,229">
-            <DataGrid x:Name="DataSubjectGrid" MinHeight="100" MaxHeight="380"  CanUserAddRows="True" AutoGenerateColumns="false" RowEditEnding="MyDataGrid_RowEditEnding"> IsReadOnly="False" MouseRightButtonUp="ClickMouseRightAction" Height="304">
+        <GroupBox Header="Položky" Margin="10,293,10,189">
+            <DataGrid x:Name="DataSubjectGrid" MinHeight="100" MaxHeight="380"  CanUserAddRows="True" AutoGenerateColumns="false" RowEditEnding="MyDataGrid_RowEditEnding">IsReadOnly="False" MouseRightButtonUp="ClickMouseRightAction" Height="304">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Název" Binding="{Binding OrderItemName}" Width="380"/>
                     <DataGridTextColumn Header="Poznáma" Binding="{Binding SubjectName}" Width="300"/>
@@ -71,13 +79,13 @@
                     <ContextMenu>
                         <MenuItem Header="Nový" Click="NewOrderItem"/>
                         <MenuItem Header="Vymazat" Click="DeleteOrderItem"/>
-                    </ContextMenu>    
+                    </ContextMenu>
                 </DataGrid.ContextMenu>
             </DataGrid>
 
         </GroupBox>
 
-        <GroupBox Header="Patička" Margin="10,560,10,146" >
+        <GroupBox Header="Patička" Margin="10,600,10,125" >
             <Grid Margin="0,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35" />
@@ -107,6 +115,6 @@
             </Grid>
 
         </GroupBox>
-        
+
     </Grid>
 </Window>

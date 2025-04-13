@@ -26,10 +26,10 @@
         </Menu>        
           
             <StackPanel>
-            <Grid Height="20">
-                <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="0,0,1160,0"/>
-            </Grid>
-        </StackPanel>
+                <Grid Height="20">
+                    <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="0,0,1160,0"/>
+                </Grid>
+            </StackPanel>
 
        
         <DataGrid x:Name="GridOrdersAll" Height="760" MouseDoubleClick="Selected" AutoGenerateColumns="False" IsReadOnly="True" MouseRightButtonDown="MouserRigtAction">
