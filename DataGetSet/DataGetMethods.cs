@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,9 @@ namespace Zakázky.DataGetSet
 
         public static List<Subject> GetSubjects()
         {
+            
             using (var dataSubjects = new MainDBContext())
+
             {
                 var subjects = dataSubjects.Subject.Select(s=> new Subject
                 {
@@ -109,6 +112,6 @@ namespace Zakázky.DataGetSet
             }
 
         }
-
+  
     }
 }

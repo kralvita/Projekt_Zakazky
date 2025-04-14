@@ -16,11 +16,11 @@
         <StackPanel>
             <Grid Height="25" Margin="0,25,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="21*"/>
-                    <ColumnDefinition Width="79*"/>
+                    <ColumnDefinition Width="89*"/>
+                    <ColumnDefinition Width="311*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Stav:" Width="50" Margin="10,0,108,0"/>
-                <ComboBox  x:Name="OrderStateComboBox" Width="120" Height="25" Margin="60,0,620,0" Grid.ColumnSpan="2" />
+                <Label Content="Stav:" Margin="11,0,109,0"/>
+                <ComboBox  x:Name="OrderStateComboBox" Margin="45,0,5,0" />
             </Grid>
         </StackPanel>
         <GroupBox Header="Hlavička" Margin="10,55,10,496">

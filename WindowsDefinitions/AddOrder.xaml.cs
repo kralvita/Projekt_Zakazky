@@ -26,6 +26,7 @@ namespace Zakázky.WindowsDefinitions
             InitializeComponent();
             OrderTypeComboBox.ItemsSource = Enum.GetValues(typeof(OrderType));
             OrderStateComboBox.ItemsSource = Enum.GetValues(typeof(OrderState));
+            DatePicker.DisplayDate = DateTime.Now;  
 
 
         }

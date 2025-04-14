@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Zakázky.DataGetSet;
+using Zakázky.DB_Class;
 
 namespace Zakázky.WindowsDefinitions
 {
@@ -24,7 +26,8 @@ namespace Zakázky.WindowsDefinitions
         {
             InitializeComponent();
             var Subjects = DataGetMethods.GetSubjects();
-            DataSubjectGrid.ItemsSource = Subjects;
+            var active = Subjects.Where(x => !x.IsDeleted).ToList();
+            DataSubjectGrid.ItemsSource = active;
         }
 
         private void Close(object sender, RoutedEventArgs e)
@@ -40,6 +43,16 @@ namespace Zakázky.WindowsDefinitions
         }
 
         private void Delete(object sender, RoutedEventArgs e)
+        {
+            Subject Selected = (Subject)DataSubjectGrid.SelectedItem;
+            if (Selected != null)
+            {
+                Selected.IsDeleted = true;
+                DataSubjectGrid.Items.Refresh();
+            }
+        }
+
+        private void ShowDeleted(object sender, RoutedEventArgs e)
         {
 
         }
