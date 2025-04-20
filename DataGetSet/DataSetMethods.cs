@@ -25,8 +25,7 @@ namespace Zakázky.DataGetSet
                 System.Windows.MessageBox.Show("Uloženo!");
             }
 
-        }
-        
+        }        
         public static void SetContact(string Name, int Phone, string Email)
         {
             using (var SetContactInsert = new MainDBContext())
@@ -43,13 +42,13 @@ namespace Zakázky.DataGetSet
             }
          
         }
-
-        public static void SetAdress(string AdressName, string City, string Region, int PostalCode)
+        public static void SetAdress(string adressname, string adress, string City, string Region, int PostalCode)
         {
             using (var SetAdressInsert = new MainDBContext())
             {
                 AdressList Adress = new AdressList();
-                Adress.Adress = AdressName;
+                Adress.AdressName = adressname;
+                Adress.Adress = adress;
                 Adress.City = City;
                 Adress.Region = Region;
                 Adress.PostalCode = PostalCode;
@@ -60,7 +59,6 @@ namespace Zakázky.DataGetSet
             }
 
         }
-
         public static void SetOrder(string AdressName, string City, string Region, int PostalCode)
         {
             using (var SetAdressInsert = new MainDBContext())
@@ -78,5 +76,45 @@ namespace Zakázky.DataGetSet
 
         }
 
+        public static void Update(Subject s)
+        {
+            using (var Update = new MainDBContext())
+            {
+                Update.Subject.Update(s);
+                Update.SaveChanges();
+            }
+        }
+        public static void Update(Order s)
+        {
+            using (var Update = new MainDBContext())
+            {
+                Update.Order.Update(s);
+                Update.SaveChanges();
+            }
+        }
+        public static void Update(OrderItem s)
+        {
+            using (var Update = new MainDBContext())
+            {
+                Update.OrderItem.Update(s);
+                Update.SaveChanges();
+            }
+        }
+        public static void Update(AdressList s)
+        {
+            using (var Update = new MainDBContext())
+            {
+                Update.AdressList.Update(s);
+                Update.SaveChanges();
+            }
+        }
+        public static void Update(ContactList s)
+        {
+            using (var Update = new MainDBContext())
+            {
+                Update.ContactList.Update(s);
+                Update.SaveChanges();
+            }
+        }
     }
 }

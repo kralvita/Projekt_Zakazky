@@ -10,7 +10,7 @@
         <StackPanel>
             <Menu Height="20">
                 <MenuItem Header="Uložit" Click="SaveOrder"/>
-                <MenuItem Header="Zavřít" Click="Close"/>
+                <MenuItem Header="Zavřít" Click="WindowClose"/>
             </Menu>
         </StackPanel>
         <StackPanel>
@@ -48,11 +48,11 @@
                 <DatePicker x:Name="DatePicker" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Height="25"/>
 
                 <TextBlock Text="Odběratel:" Grid.Column="2" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <TextBox x:Name="CustomerTextBox" Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Height="25"/>
+                <ComboBox x:Name="SubjectComboBox"  Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Height="25" 
+                          DisplayMemberPath="SubjectName" SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"/>
 
                 <TextBlock Text="Typ:" Grid.Column="4" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <ComboBox x:Name="OrderTypeComboBox" Grid.Row="0" Grid.Column="5" Margin="5,5,5,5" Height="25"
-                          Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="OrderTypeComboBox" Grid.Row="0" Grid.Column="5" Margin="5,5,5,5" Height="25" Grid.ColumnSpan="2"/>
 
                 <!-- Row 2: Order Name, Order Note -->
                 <TextBlock Text="Název zakázky:" Grid.Row="1" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" />

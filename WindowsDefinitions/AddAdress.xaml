@@ -1,0 +1,55 @@
+﻿<Window x:Class="Zakázky.WindowsDefinitions.AddAdress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zakázky.WindowsDefinitions"
+        mc:Ignorable="d"
+        Title="Nová adresa" Height="220" Width="680">
+    
+    <StackPanel>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Název -->
+        <Label Content="Název:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="AdressName" Grid.Row="0" Grid.Column="1" Margin="5" Height="25"/>
+
+        <!-- Adresa -->
+        <Label Content="Adresa:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="Adress" Grid.Row="1" Grid.Column="1" Margin="5" Height="25"/>
+
+        <!-- Kraj -->
+        <Label Content="Kraj:" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="Region" Grid.Row="1" Grid.Column="3" Margin="5" Height="25"/>
+
+        <!-- Město -->
+        <Label Content="Město:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="City" Grid.Row="2" Grid.Column="1" Margin="5" Height="25"/>
+
+        <!-- PSČ -->
+        <Label Content="PSČ:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="PostalCode" Grid.Row="2" Grid.Column="3" Margin="5" Height="25"/>
+
+        <!-- Tlačítka -->
+        <StackPanel Grid.Row="4" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button Name="Save" Content="Uložit" Width="90" Margin="0,0,10,0" Click="SaveAdress"/>
+            <Button Name="CloseFrom" Content="Zpět" Width="90" Click="Close"/>
+        </StackPanel>
+    </Grid>
+    </StackPanel>
+</Window>

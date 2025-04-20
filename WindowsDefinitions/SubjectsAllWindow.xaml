@@ -8,23 +8,31 @@
         Title="SubjectsAllWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-        <Menu>
+   
+            <Menu>
                 <MenuItem Header="Nový" Click="New"/>
                 <MenuItem Header="Vymazat" Click="Delete"/>
+                <MenuItem Header="Editovat" Click="Edit"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
         </Menu>
             <StackPanel>
-                <CheckBox Content="Vymazané" Checked="ShowDeleted" Unchecked="ShowActive" Margin="5"/>
+                <CheckBox x:Name="CheckboxDeleted" Content="Vymazané" Checked="ShowDeleted" Unchecked="ShowActive" Margin="5"/>
             </StackPanel>
-            <DataGrid x:Name="DataSubjectGrid" MinHeight="100" MaxHeight="400" AutoGenerateColumns="false" IsReadOnly="True">
+            <DataGrid x:Name="DataSubjectGrid"  MaxHeight="400" AutoGenerateColumns="false" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Datum vzniku" Binding="{Binding CreatedDate, StringFormat=dd.MM.yyyy}" Width="90"/>
                     <DataGridTextColumn Header="Zkratka" Binding="{Binding SubjectCode}" Width="80"/>
                     <DataGridTextColumn Header="Název" Binding="{Binding SubjectName}" Width="200"/>
                     <DataGridTextColumn Header="IČO" Binding="{Binding ICO}" Width="80"/>
-                    <DataGridTextColumn Header="DIČ" Binding="{Binding DIC}" Width="120"/>
-                    <DataGridTextColumn Header="IsDeleted" Binding="{Binding IsDeleted}" Width="120"/>
+                    <DataGridTextColumn Header="DIČ" Binding="{Binding DIC}" Width="120"/>                    
                 </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Nový" Click="New" InputGestureText="INS"/>
+                        <MenuItem Header="Vymazat" Click="Delete" InputGestureText="Shift+DEL"/>
+                        <MenuItem Header="Obnovit" Click="Refresh" InputGestureText="F5"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
         </StackPanel>
     </Grid>

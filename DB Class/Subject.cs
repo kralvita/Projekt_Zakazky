@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zakázky.DB_Class;
 
+
+
 public class Subject
 {        
         public int ID { get; set; }        
@@ -16,11 +18,12 @@ public class Subject
 
         public int? AdressListID { get; set; }
         public AdressList? Adress { get; set; }
+        public List<AdressList>? AdressList { get; set; }
         public int? ContactListID { get; set; }
         public ContactList? Contact { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; }
-        public Boolean IsDeleted { get; set; } = false;  
-    
+        public Boolean IsDeleted { get; set; } = false;
 
+    
 }

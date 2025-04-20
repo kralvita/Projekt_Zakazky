@@ -33,6 +33,9 @@ namespace Zakázky.Migrations
                     b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AdressName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -48,12 +51,55 @@ namespace Zakázky.Migrations
                     b.Property<string>("Region")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SubjectID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SubjectID");
+
                     b.ToTable("AdressList");
+                });
+
+            modelBuilder.Entity("Zakázky.DB_Class.BindingSubjectToAdress", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("AdressId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("BindingSubjectToAdress");
+                });
+
+            modelBuilder.Entity("Zakázky.DB_Class.BindingSubjectToContact", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("ContactId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("BindingSubjectToContact");
                 });
 
             modelBuilder.Entity("Zakázky.DB_Class.ContactList", b =>
@@ -134,7 +180,7 @@ namespace Zakázky.Migrations
                     b.Property<int?>("CustumerID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EmployeeTookOverId")
+                    b.Property<int?>("EmployeeTookOverID")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("EstimatedTotalCost")
@@ -173,7 +219,7 @@ namespace Zakázky.Migrations
 
                     b.HasIndex("CustumerID");
 
-                    b.HasIndex("EmployeeTookOverId");
+                    b.HasIndex("EmployeeTookOverID");
 
                     b.HasIndex("OrderItemID");
 
@@ -249,6 +295,13 @@ namespace Zakázky.Migrations
                     b.ToTable("Subject");
                 });
 
+            modelBuilder.Entity("Zakázky.DB_Class.AdressList", b =>
+                {
+                    b.HasOne("Zakázky.DB_Class.Subject", null)
+                        .WithMany("AdressList")
+                        .HasForeignKey("SubjectID");
+                });
+
             modelBuilder.Entity("Zakázky.DB_Class.Employee", b =>
                 {
                     b.HasOne("Zakázky.DB_Class.ContactList", "Contact")
@@ -270,7 +323,7 @@ namespace Zakázky.Migrations
 
                     b.HasOne("Zakázky.DB_Class.Employee", "EmployeeTookOver")
                         .WithMany()
-                        .HasForeignKey("EmployeeTookOverId");
+                        .HasForeignKey("EmployeeTookOverID");
 
                     b.HasOne("Zakázky.DB_Class.OrderItem", "OrderItem")
                         .WithMany()
@@ -298,6 +351,11 @@ namespace Zakázky.Migrations
                     b.Navigation("Adress");
 
                     b.Navigation("Contact");
+                });
+
+            modelBuilder.Entity("Zakázky.DB_Class.Subject", b =>
+                {
+                    b.Navigation("AdressList");
                 });
 #pragma warning restore 612, 618
         }

@@ -27,7 +27,7 @@
           
             <StackPanel>
                 <Grid Height="20">
-                    <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="0,0,1160,0"/>
+                    <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="0,3,1119,0"/>
                 </Grid>
             </StackPanel>
 

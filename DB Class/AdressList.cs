@@ -10,6 +10,7 @@ namespace Zakázky.DB_Class
     {
         public int ID { get; set; }
         public string? Adress { get; set; }
+        public string? AdressName { get; set; }
         public string? City { get; set; }  
         public string? Region { get; set; }
         public int? PostalCode { get; set; }

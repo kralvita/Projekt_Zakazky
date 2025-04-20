@@ -13,6 +13,8 @@ public class MainDBContext : DbContext
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderItem> OrderItem { get; set; }
     public DbSet<Subject> Subject { get; set; }
+    public DbSet<BindingSubjectToAdress> BindingSubjectToAdress { get; set; }
+    public DbSet<BindingSubjectToContact> BindingSubjectToContact { get; set; }
 
     /*
      * dotnet ef migrations add NAZEV_MIGRACE

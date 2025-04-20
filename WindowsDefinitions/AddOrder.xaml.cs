@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Identity.Client;
+using Zakázky.DataGetSet;
 using Zakázky.DB_Class;
 
 namespace Zakázky.WindowsDefinitions
@@ -21,13 +24,19 @@ namespace Zakázky.WindowsDefinitions
     /// </summary>
     public partial class AddOrder : Window
     {
+        public ObservableCollection<Subject> allsubjects = new();
+
         public AddOrder()
         {
             InitializeComponent();
+            allsubjects = new(DataGetMethods.GetSubjects().Where(e => !e.IsDeleted).ToList());    
+            SubjectComboBox.ItemsSource = allsubjects;
             OrderTypeComboBox.ItemsSource = Enum.GetValues(typeof(OrderType));
             OrderStateComboBox.ItemsSource = Enum.GetValues(typeof(OrderState));
-            DatePicker.DisplayDate = DateTime.Now;  
 
+            // Incialializace DatePickeru
+            DatePicker.DisplayDate = DateTime.Now;
+            DatePicker.SelectedDate = DateTime.Now; 
 
         }
 
@@ -36,7 +45,7 @@ namespace Zakázky.WindowsDefinitions
 
         }
 
-        private void Close(object sender, RoutedEventArgs e)
+        private void WindowClose(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
