@@ -26,7 +26,7 @@ namespace Zakázky.WindowsDefinitions
     {
         private string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
         private bool editingmode = false;
-        public Subject ESuject = new();
+        private Subject ESuject = new();
         public void Insert (Subject subject)
         {
             editingmode = true;

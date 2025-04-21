@@ -41,19 +41,25 @@ namespace Zakázky.WindowsDefinitions
         }
 
         ObservableCollection<Subject> allSubjects = new();
-  
         
+        //Metody pro klávesové zkratky ve WPF
+        public static readonly RoutedUICommand NewCommand = new RoutedUICommand("New", "NewCommand", typeof(SubjectsAllWindow));
+        public static readonly RoutedUICommand DeleteCommand = new RoutedUICommand("Delete", "DeleteCommand", typeof(SubjectsAllWindow));
+        public static readonly RoutedUICommand EditCommand = new RoutedUICommand("Edit", "EditCommand", typeof(SubjectsAllWindow));
+        public static readonly RoutedUICommand RefreshCommand = new RoutedUICommand("Refresh", "RefreshCommand", typeof(SubjectsAllWindow));
+
+
         public SubjectsAllWindow()
         {
             allSubjects.CollectionChanged += CheckboxChanged;
             InitializeComponent();
+
             allSubjects = new(DataGetMethods.GetSubjects());
             DataSubjectGrid.ItemsSource = active;
         }
         private void CheckboxChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
-            DataSubjectGrid.ItemsSource = (CheckboxDeleted?.IsChecked ?? false) ? deleted : active;
-              
+            DataSubjectGrid.ItemsSource = (CheckboxDeleted?.IsChecked ?? false) ? deleted : active;              
             DataSubjectGrid.Items.Refresh();
         }
 
@@ -79,7 +85,6 @@ namespace Zakázky.WindowsDefinitions
                 DataSubjectGrid.ItemsSource = (CheckboxDeleted?.IsChecked ?? false) ? deleted : active;
                 DataSubjectGrid.Items.Refresh();
                 DataSetMethods.Update(Selected);
-
             }
         }
 
@@ -93,7 +98,6 @@ namespace Zakázky.WindowsDefinitions
         {
             DataSubjectGrid.ItemsSource = active;
             DataSubjectGrid.Items.Refresh();
-
         }
 
         private void Edit(object sender, RoutedEventArgs e)
@@ -106,8 +110,7 @@ namespace Zakázky.WindowsDefinitions
                 addSubject.Insert(Selected);
                 addSubject.ShowDialog();
                 DataSubjectGrid.Items.Refresh();
-            }
-           
+            }    
 
         }
 

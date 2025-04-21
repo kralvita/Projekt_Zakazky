@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="SubjectsAllWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Resources>
+            <RoutedUICommand x:Key="NewCommand"/>
+            <RoutedUICommand x:Key="DeleteCommand"/>
+            <RoutedUICommand x:Key="EditCommand"/>
+            <RoutedUICommand x:Key="RefreshCommand"/>
+        </Grid.Resources>
+
+        <Grid.InputBindings>
+            <KeyBinding Key="Insert" Command="{StaticResource NewCommand}"/>
+            <KeyBinding Key="Delete" Modifiers="Shift" Command="{StaticResource DeleteCommand}"/>
+            <KeyBinding Key="E" Modifiers="Control" Command="{StaticResource EditCommand}"/>
+            <KeyBinding Key="F5" Command="{StaticResource RefreshCommand}"/>
+        </Grid.InputBindings>
+
+        <Grid.CommandBindings>
+            <CommandBinding Command="{StaticResource NewCommand}" Executed="New"/>
+            <CommandBinding Command="{StaticResource DeleteCommand}" Executed="Delete"/>
+            <CommandBinding Command="{StaticResource EditCommand}" Executed="Edit"/>
+            <CommandBinding Command="{StaticResource RefreshCommand}" Executed="Refresh"/>
+        </Grid.CommandBindings>
         <StackPanel>
    
             <Menu>
@@ -30,6 +50,7 @@
                     <ContextMenu>
                         <MenuItem Header="Nový" Click="New" InputGestureText="INS"/>
                         <MenuItem Header="Vymazat" Click="Delete" InputGestureText="Shift+DEL"/>
+                        <MenuItem Header="Editovat" Click="Edit" InputGestureText="Ctrl+E"/>
                         <MenuItem Header="Obnovit" Click="Refresh" InputGestureText="F5"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>

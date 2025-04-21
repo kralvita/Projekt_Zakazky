@@ -6,14 +6,36 @@
         xmlns:local="clr-namespace:Zakázky"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1240">
-    <StackPanel>
+    <Grid>
+        <Grid.Resources>
+            <RoutedUICommand x:Key="NewCommand"/>
+            <RoutedUICommand x:Key="DeleteCommand"/>
+            <RoutedUICommand x:Key="EditCommand"/>
+            <RoutedUICommand x:Key="RefreshCommand"/>
+        </Grid.Resources>
+
+        <Grid.InputBindings>
+            <KeyBinding Key="Insert" Command="{StaticResource NewCommand}"/>
+            <KeyBinding Key="Delete" Modifiers="Shift" Command="{StaticResource DeleteCommand}"/>
+            <KeyBinding Key="E" Modifiers="Control" Command="{StaticResource EditCommand}"/>
+            <KeyBinding Key="F5" Command="{StaticResource RefreshCommand}"/>
+        </Grid.InputBindings>
+
+        <Grid.CommandBindings>
+            <CommandBinding Command="{StaticResource NewCommand}" Executed="New"/>
+            <CommandBinding Command="{StaticResource DeleteCommand}" Executed="Delete"/>
+            <CommandBinding Command="{StaticResource EditCommand}" Executed="Edit"/>
+            <CommandBinding Command="{StaticResource RefreshCommand}" Executed="Refresh"/>
+        </Grid.CommandBindings>
+        
+        <StackPanel>
         <Menu Height="20" RenderTransformOrigin="0,0">
             <MenuItem Header="Soubor">
                 <MenuItem Header="Uložit"/>
                 <MenuItem Header="Zavřít" Click="Close"/>
             </MenuItem>
             <MenuItem Header="Zakázky">
-                <MenuItem Header="Nová zakázka" Click="NewOrder"/>
+                <MenuItem Header="Nová zakázka" Click="New"/>
             </MenuItem>
             <MenuItem Header="Subjekty">
                 <MenuItem Header="Zobrazit všechny" Click="ViewSubjectList"/>
@@ -26,16 +48,16 @@
         </Menu>        
           
             <StackPanel>
-                <Grid Height="20">
-                    <CheckBox Content="Vymazané" IsChecked="{Binding IsDeleted}" Margin="0,3,1119,0"/>
+                <Grid Height="25">
+                    <CheckBox x:Name="CheckboxDeleted" Content="Vymazané" Checked="ShowDeleted" Unchecked="ShowActive" Margin="5"/>
                 </Grid>
             </StackPanel>
 
-       
-        <DataGrid x:Name="GridOrdersAll" Height="760" MouseDoubleClick="Selected" AutoGenerateColumns="False" IsReadOnly="True" MouseRightButtonDown="MouserRigtAction">
+        
+        <DataGrid x:Name="DataOrderGrid" Height="760" MouseDoubleClick="Selected" AutoGenerateColumns="False" IsReadOnly="True" MouseRightButtonDown="MouserRigtAction">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum" Binding="{Binding OrderDate, StringFormat=dd.MM.yyyy}" Width="80"/>
-                <DataGridTextColumn Header="Zákazník" Binding="{Binding Custumer}" Width="150"/>
+                <DataGridTextColumn Header="Zákazník" Binding="{Binding Custumer.SubjectName}" Width="150"/>
                 <DataGridTextColumn Header="Typ" Binding="{Binding OrderType}" Width="80"/>
                 <DataGridTextColumn Header="Název" Binding="{Binding OrderName}" Width="180"/>
                 <DataGridTextColumn Header="Popis" Binding="{Binding OrderDescription}" Width="200"/>
@@ -47,14 +69,17 @@
             
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Nový" Click="NewOrder"/>
-                    <MenuItem Header="Detail" Click="EditOrder"/>
-                    <MenuItem Header="Vymazat" Click="DeleteOrder"/>
-                </ContextMenu>
+                        <MenuItem Header="Nový" Click="New" InputGestureText="INS"/>
+                        <MenuItem Header="Vymazat" Click="Delete" InputGestureText="Shift+DEL"/>
+                        <MenuItem Header="Editovat" Click="Edit" InputGestureText="Ctrl+E"/>
+                        <MenuItem Header="Obnovit" Click="Refresh" InputGestureText="F5"/>
+                    </ContextMenu>
             </DataGrid.ContextMenu>
 
         </DataGrid>
+            
 
     </StackPanel>
+    </Grid>
 
 </Window>

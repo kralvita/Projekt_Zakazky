@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,20 +21,43 @@ namespace Zakázky
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Order> active
+        {
+            get
+            {
+                return allOrders.Where(e => !e.IsDeleted).ToList();
+            }
+        }
+        List<Order> deleted
+        {
+            get
+            {
+                return allOrders.Where(e => e.IsDeleted).ToList();
+            }
+        }
+        ObservableCollection<Order> allOrders = new();
+        //Metody pro klávesové zkratky ve WPF
+        public static readonly RoutedUICommand NewCommand = new RoutedUICommand("New", "NewCommand", typeof(MainWindow));
+        public static readonly RoutedUICommand DeleteCommand = new RoutedUICommand("Delete", "DeleteCommand", typeof(MainWindow));
+        public static readonly RoutedUICommand EditCommand = new RoutedUICommand("Edit", "EditCommand", typeof(MainWindow));
+        public static readonly RoutedUICommand RefreshCommand = new RoutedUICommand("Refresh", "RefreshCommand", typeof(MainWindow));
         public MainWindow()
         {
             InitializeComponent();
+            allOrders.CollectionChanged += CheckboxChanged;
 
-            var order = DataGetMethods.GetOrders();
-            GridOrdersAll.ItemsSource = order;
-
+            allOrders = new(DataGetMethods.GetOrders());
+            DataOrderGrid.ItemsSource = active;
 
         }
-        
+        private void CheckboxChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            DataOrderGrid.ItemsSource = (CheckboxDeleted?.IsChecked ?? false) ? deleted : active;
+            DataOrderGrid.Items.Refresh();
+        }
         private void Close(object sender, RoutedEventArgs e)
         {
-            this.Close();
-           
+            this.Close();           
         }
 
         private void ViewSubjectList(object sender, RoutedEventArgs e)
@@ -60,7 +85,7 @@ namespace Zakázky
             System.Windows.MessageBox.Show("Vypracoval ten největší borec ze všech.");
         }
 
-        private void NewOrder(object sender, RoutedEventArgs e)
+        private void New(object sender, RoutedEventArgs e)
         {
             AddOrder addOrder = new AddOrder();
             addOrder.Show();
@@ -72,19 +97,57 @@ namespace Zakázky
 
         }
 
-        private void EditOrder(object sender, RoutedEventArgs e)
+        private void Edit(object sender, RoutedEventArgs e)
         {
+            Order Selected = (Order)DataOrderGrid.SelectedItem;
+
+            if (Selected != null)
+            {
+                AddOrder addOrder = new ();
+                addOrder.Insert(Selected);
+                addOrder.ShowDialog();
+                DataOrderGrid.Items.Refresh();
+            }
 
         }
 
-        private void DeleteOrder(object sender, RoutedEventArgs e)
+        private void Delete(object sender, RoutedEventArgs e)
         {
+            Order Selected = (Order)DataOrderGrid.SelectedItem;
 
+            if (Selected != null)
+            {
+                Selected.IsDeleted = !Selected.IsDeleted;
+                DataOrderGrid.ItemsSource = (CheckboxDeleted?.IsChecked ?? false) ? deleted : active;
+                DataOrderGrid.Items.Refresh();
+                DataSetMethods.Update(Selected);
+
+            }
         }
 
         private void MouserRigtAction(object sender, MouseButtonEventArgs e)
         {
 
         }
+
+
+
+        private void ShowActive(object sender, RoutedEventArgs e)
+        {
+            DataOrderGrid.ItemsSource = active;
+            DataOrderGrid.Items.Refresh();
+        }
+        private void ShowDeleted(object sender, RoutedEventArgs e)
+        {
+            DataOrderGrid.ItemsSource = deleted;
+            DataOrderGrid.Items.Refresh();
+        }
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            DataOrderGrid.Items.Refresh();
+
+        }
+
+
     }
 }

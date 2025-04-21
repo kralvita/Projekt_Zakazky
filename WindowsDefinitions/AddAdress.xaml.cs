@@ -55,7 +55,6 @@ namespace Zakázky.WindowsDefinitions
         {
             if (!Validation())
             return;
-
             string adressname = AdressName.Text;
             string adress = Adress.Text;
             string city = City.Text;

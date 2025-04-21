@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="311*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Stav:" Margin="11,0,109,0"/>
-                <ComboBox  x:Name="OrderStateComboBox" Margin="45,0,5,0" />
+                <ComboBox  x:Name="OState" Margin="45,0,5,0" />
             </Grid>
         </StackPanel>
         <GroupBox Header="Hlavička" Margin="10,55,10,496">
@@ -45,25 +45,25 @@
                 </Grid.ColumnDefinitions>
                 <!-- Row 1: Date, Customer, Order Type -->
                 <TextBlock Text="Date:" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <DatePicker x:Name="DatePicker" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Height="25"/>
+                <DatePicker x:Name="DateOrder" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Height="25"/>
 
                 <TextBlock Text="Odběratel:" Grid.Column="2" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <ComboBox x:Name="SubjectComboBox"  Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Height="25" 
+                <ComboBox x:Name="OCustomer"  Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Height="25" 
                           DisplayMemberPath="SubjectName" SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"/>
 
                 <TextBlock Text="Typ:" Grid.Column="4" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <ComboBox x:Name="OrderTypeComboBox" Grid.Row="0" Grid.Column="5" Margin="5,5,5,5" Height="25" Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="OType" Grid.Row="0" Grid.Column="5" Margin="5,5,5,5" Height="25" Grid.ColumnSpan="2"/>
 
                 <!-- Row 2: Order Name, Order Note -->
                 <TextBlock Text="Název zakázky:" Grid.Row="1" Grid.Column="0" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <TextBox x:Name="OrderNameTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="25"/>
+                <TextBox x:Name="OName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="25"/>
 
                 <TextBlock Text="Poznámka:" Grid.Row="1" Grid.Column="3" Margin="5,0,5,0" VerticalAlignment="Center" />
-                <TextBox x:Name="OrderNoteTextBox" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Margin="5,5,5,5" Height="25"/>
+                <TextBox x:Name="ONote" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Margin="5,5,5,5" Height="25"/>
 
                 <!-- Row 3: Order Description -->
                 <TextBlock Text="Popis:" Grid.Row="2" Grid.Column="0" Margin="5,5,5,0" VerticalAlignment="Top" />
-                <TextBox x:Name="OrderDescriptionTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Margin="5,5,5,5" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
+                <TextBox x:Name="ODescription" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Margin="5,5,5,5" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
             </Grid>
 
         </GroupBox>
@@ -107,11 +107,11 @@
 
                 <!-- Row 1: Estimated Cost -->
                 <TextBlock Text="Odhadovaná cena:" Grid.Row="0" Grid.Column="2" Margin="5" VerticalAlignment="Center" />
-                <TextBox x:Name="EstimatedCostTextBox" Grid.Row="0" Grid.Column="3" Margin="5"  Height="25"/>
+                <TextBox x:Name="EstimatedCost" Grid.Row="0" Grid.Column="3" Margin="5"  Height="25"/>
 
                 <!-- Row 1: Total Cost -->
                 <TextBlock Text="Konečná cena:" Grid.Row="0" Grid.Column="4" Margin="5" VerticalAlignment="Center" />
-                <TextBox x:Name="TotalCostTextBox" Grid.Row="0" Grid.Column="5" Margin="5" Height="25"/>
+                <TextBox x:Name="TotalCost" Grid.Row="0" Grid.Column="5" Margin="5" Height="25"/>
             </Grid>
 
         </GroupBox>

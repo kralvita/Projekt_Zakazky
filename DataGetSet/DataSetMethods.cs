@@ -59,19 +59,24 @@ namespace Zakázky.DataGetSet
             }
 
         }
-        public static void SetOrder(string AdressName, string City, string Region, int PostalCode)
+        public static void SetOrder(DateTime Date, string Name, OrderType Type, OrderState State, string description, string note, int customerID, decimal etc, decimal tc)
         {
-            using (var SetAdressInsert = new MainDBContext())
+            using (var SetOrderInsert = new MainDBContext())
             {
-                AdressList Adress = new AdressList();
-                Adress.Adress = AdressName;
-                Adress.City = City;
-                Adress.Region = Region;
-                Adress.PostalCode = PostalCode;
-
-                SetAdressInsert.AdressList.Add(Adress);
-                SetAdressInsert.SaveChanges();
+                Order order = new();
+                order.OrderDate = Date;
+                order.OrderName = Name;
+                order.orderType = Type;
+                order.orderState = State;
+                order.OrderDescription = description;
+                order.OrderNote = note;
+                order.EstimatedTotalCost = etc;
+                order.EstimatedTotalCost = tc;  
+                order.CustumerID = customerID;
+                SetOrderInsert.Order.Add(order);
+                SetOrderInsert.SaveChanges();
                 System.Windows.MessageBox.Show("Uloženo!");
+
             }
 
         }
